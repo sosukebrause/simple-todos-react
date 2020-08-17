@@ -22,11 +22,27 @@ function App() {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   };
+
+  const completeTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+  };
+
+  const removeTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+  };
+
   return (
     <div className="app">
       <div className="todoList">
         {todos.map((todo, index) => (
-          <Todo key={index} index={index} todo={todo} />
+          <Todo
+            key={index}
+            index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+          />
         ))}
         <TodoForm addTodo={addTodo} />
       </div>
