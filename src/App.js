@@ -26,11 +26,13 @@ function App() {
   const completeTodo = (index) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
+    setTodos(newTodos);
   };
 
   const removeTodo = (index) => {
     const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
   return (
@@ -42,6 +44,7 @@ function App() {
             index={index}
             todo={todo}
             completeTodo={completeTodo}
+            removeTodo={removeTodo}
           />
         ))}
         <TodoForm addTodo={addTodo} />
