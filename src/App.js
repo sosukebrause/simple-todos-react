@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Todo from "./components/Todo";
+import TodoForm from "./components/Form";
 
 function App() {
+  const [todos, setTodos] = useState([
+    {
+      text: `Learn about react hooks`,
+      isCompleted: false,
+    },
+    {
+      text: `Learn about react array loops`,
+      isCompleted: false,
+    },
+    {
+      text: `Learn about react webpacks`,
+      isCompleted: false,
+    },
+  ]);
+  const addTodo = (text) => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="todoList">
+        {todos.map((todo, index) => (
+          <Todo key={index} index={index} todo={todo} />
+        ))}
+        <TodoForm addTodo={addTodo} />
+      </div>
     </div>
   );
 }
